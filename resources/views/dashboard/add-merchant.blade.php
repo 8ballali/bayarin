@@ -148,16 +148,34 @@
 
             <!-- Layouts -->
             <li class="menu-item">
-                <a href="{{ url('/roles')}}" class="menu-link">
+                <a href="javascript:void(0);" class="menu-link">
+                    <i class="menu-icon tf-icons bx bxs-user-pin"></i>
+                    <div data-i18n="Authentications">Users</div>
+                  </a>
+            </li>
+            <li class="menu-item">
+                <a href="javascript:void(0);" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-chip"></i>
                     <div data-i18n="Authentications">Roles</div>
                   </a>
             </li>
             <li class="menu-item">
-              <a href="{{ url('/university')}}" class="menu-link">
+              <a href="javascript:void(0);" class="menu-link">
                 <i class="menu-icon tf-icons bx bxs-graduation"></i>
                 <div data-i18n="Account Settings">University</div>
               </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="pages-account-settings-account.html" class="menu-link">
+                    <div data-i18n="Account">Dosen</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="pages-account-settings-notifications.html" class="menu-link">
+                    <div data-i18n="Notifications">Student</div>
+                  </a>
+                </li>
+              </ul>
             </li>
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link">
@@ -166,7 +184,7 @@
               </a>
             </li>
             <li class="menu-item active">
-              <a href="{{ url('/merchant')}}" class="menu-link">
+              <a href="javascript:void(0);" class="menu-link">
                 <i class="menu-icon tf-icons bx bxs-bank"></i>
                 <div data-i18n="Authentications">Merchant</div>
               </a>
@@ -252,7 +270,7 @@
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="{{ url('/logout')}}">
+                      <a class="dropdown-item" href="auth-login-basic.html">
                         <i class="bx bx-power-off me-2"></i>
                         <span class="align-middle">Log Out</span>
                       </a>
@@ -271,62 +289,112 @@
             <!-- Content -->
 
             <div class="container-xxl flex-grow-1 container-p-y">
-                <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span> List Merchant</h4>
-                <form action="{{url('/merchant/add')}}" method="GET">
-                  <button type="submit" class="btn btn-success" data-dismiss="modal">Add Merchant</button>
-                </form>
+                <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span> Add Merchant</h4>
 
               <hr class="my-5" />
 
               <!-- Hoverable Table rows -->
-              <div class="card">
-                <h5 class="card-header">List Merchant</h5>
-                <div class="table-responsive text-nowrap">
-                  <table class="table table-bordered">
-                    <thead>
-                      <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Description</th>
-                        <th>Type</th>
-                        <th>logo</th>
-                        <th>action</th>
-                      </tr>
-                    </thead>
-                    <tbody class="table-border-bottom-0">
-                    @foreach ($merchant as $merch)
-                      <tr>
-                        <td>{{ $merch->name }}</td>
-                        <td>{{ $merch->email }}</td>
-                        <td>{{ $merch->description }}</td>
-                        <td>{{ $merch->type }}</td>
-                        <td><img src="{{ url('storage').'/'.$merch->logo }}" class="w-px-50 h-auto rounded-circle" />
-                        <td>
-                                <div class="dropdown">
-                                  <button
-                                    type="button"
-                                    class="btn p-0 dropdown-toggle hide-arrow"
-                                    data-bs-toggle="dropdown"
-                                  >
-                                    <i class="bx bx-dots-vertical-rounded"></i>
-                                  </button>
-                                  <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="/merchant/edit/{{$merch->id}}"
-                                      ><i class="bx bx-edit-alt me-1"></i> Edit</a
-                                    >
-                                    <a class="dropdown-item" href="/merchant/delete/{{$merch->id}}"
-                                      ><i class="bx bx-trash me-1"></i> Delete</a
-                                    >
-                                  </div>
-                                </div>
-                        </td>
-                    </tr>
-                    @endforeach
-                    </tbody>
-                  </table>
+              <div class="col-xl">
+                <div class="card mb-4">
+                  <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Add Merchant</h5>
+
+                  </div>
+                  <div class="card-body">
+                    <form method="post" action="{{ route('merchant-add')}}" enctype="multipart/form-data">
+                      <div class="mb-3">
+
+                        {{ csrf_field() }}
+
+                        <label class="form-label" for="basic-icon-default-fullname">Name</label>
+                        <div class="input-group input-group-merge">
+                          <span id="basic-icon-default-fullname2" class="input-group-text"
+                            ><i class="bx bx-user"></i
+                          ></span>
+                          <input
+                            type="text"
+                            name="name"
+                            class="form-control"
+                            id="basic-icon-default-fullname"
+                            placeholder="John Doe"
+                            aria-label="John Doe"
+                            aria-describedby="basic-icon-default-fullname2"
+                          />
+                        </div>
+                      </div>
+                      <div class="mb-3">
+                          <label class="form-label" for="basic-icon-default-email">Email</label>
+                          <div class="input-group input-group-merge">
+                              <span class="input-group-text"><i class="bx bx-envelope"></i></span>
+                              <input
+                              type="text"
+                              name="email"
+                              id="basic-icon-default-email"
+                              class="form-control"
+                              placeholder="email"
+                              aria-label="email"
+                              aria-describedby="basic-icon-default-email2"
+                              />
+                              <span id="basic-icon-default-email2" class="input-group-text">@example.com</span>
+                            </div>
+                            <div class="form-text">You can use letters, numbers & periods</div>
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label" for="basic-icon-default-company">Logo</label>
+                          <div class="input-group input-group-merge">
+                            <span id="basic-icon-default-company2" class="input-group-text"
+                              ><i class="bx bx-buildings"></i
+                            ></span>
+                            <input
+                              type="file"
+                              name="logo"
+                              id="basic-icon-default-company"
+                              class="form-control"
+                              placeholder="ACME Inc."
+                              aria-label="ACME Inc."
+                              aria-describedby="basic-icon-default-company2"
+                            />
+                          </div>
+                        </div>
+                      <div class="mb-3">
+                        <label class="form-label" for="basic-icon-default-phone">Description</label>
+                        <div class="input-group input-group-merge">
+                          <span id="basic-icon-default-phone2" class="input-group-text"
+                            ><i class="bx bx-book-content"></i
+                          ></span>
+                          <input
+                            type="text"
+                            name="description"
+                            id="basic-icon-default-phone"
+                            class="form-control phone-mask"
+                            placeholder="Describe Your Merchant Detail"
+                            aria-label="Describe Your Merchant Detail"
+                            aria-describedby="basic-icon-default-phone2"
+                          />
+                        </div>
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label" for="basic-icon-default-phone">Type</label>
+                        <div class="input-group input-group-merge">
+                          <span id="basic-icon-default-phone2" class="input-group-text"
+                            ><i class="bx bx-cabinet"></i
+                          ></span>
+                          <input
+                            type="text"
+                            name="type"
+                            id="basic-icon-default-phone"
+                            class="form-control phone-mask"
+                            placeholder="Type"
+                            aria-label="Type"
+                            aria-describedby="basic-icon-default-phone2"
+                          />
+                        </div>
+                      </div>
+                      <button type="submit" class="btn btn-primary">Send</button>
+                    </form>
+                  </div>
                 </div>
               </div>
-              <!--/ Hoverable Table rows -->
 
 
             </div>

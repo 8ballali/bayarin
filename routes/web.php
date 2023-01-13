@@ -27,6 +27,12 @@ Route::GET('/logout', [AuthController::class,'logout'])->name('logout');
 Route::group(['middleware' => ['Admin']], function (){
     Route::GET('/dashboard', [DashboardController::class, 'home'])->name('dashboard');
     Route::GET('/university', [DashboardController::class, 'university'])->name('university');
+    Route::GET('/roles', [DashboardController::class, 'roles'])->name('roles');
     Route::GET('/merchant', [DashboardController::class, 'merchant'])->name('merchant');
+    Route::POST('/merchant/add', [DashboardController::class, 'add_merchant'])->name('merchant-add');
+    Route::GET('/merchant/add', [DashboardController::class, 'merchant_add']);
+    Route::GET('/merchant/edit/{id}', [DashboardController::class, 'edit_merchant']);
+    Route::PUT('/merchant/update/{id}', [DashboardController::class, 'update_merchant'])->name('update-merchant');
+    Route::GET('/merchant/delete/{id}', [DashboardController::class, 'delete_merchant'])->name('delete-merchant');
     Route::POST('/university', [DashboardController::class, 'import_excel'])->name('import-university');
 });

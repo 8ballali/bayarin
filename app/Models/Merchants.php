@@ -9,6 +9,6 @@ class Merchants extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name','logo'
+        'name','logo','email','description','type'
     ];
 }

@@ -151,35 +151,18 @@
 
             <!-- Layouts -->
             <li class="menu-item">
-                <a href="{{ url('/user')}}" class="menu-link">
-                    <i class="menu-icon tf-icons bx bxs-user-pin"></i>
-                    <div data-i18n="Authentications">Users</div>
-                  </a>
-            </li>
-            <li class="menu-item">
                 <a href="{{ url('/roles')}}" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-chip"></i>
                     <div data-i18n="Authentications">Roles</div>
                   </a>
             </li>
             <li class="menu-item">
-              <a href="{{url('/university')}}" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bxs-graduation"></i>
-                <div data-i18n="Account Settings">University</div>
-              </a>
-              <ul class="menu-sub">
-                <li class="menu-item">
-                  <a href="pages-account-settings-account.html" class="menu-link">
-                    <div data-i18n="Account">Dosen</div>
+                <a href="{{ url('/university')}}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bxs-graduation"></i>
+                    <div data-i18n="Authentications">University</div>
                   </a>
-                </li>
-                <li class="menu-item">
-                  <a href="pages-account-settings-notifications.html" class="menu-link">
-                    <div data-i18n="Notifications">Student</div>
-                  </a>
-                </li>
-              </ul>
             </li>
+
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-credit-card"></i>
@@ -187,7 +170,7 @@
               </a>
             </li>
             <li class="menu-item">
-              <a href="javascript:void(0);" class="menu-link">
+              <a href="{{ url('/merchant')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bxs-bank"></i>
                 <div data-i18n="Authentications">Merchant</div>
               </a>

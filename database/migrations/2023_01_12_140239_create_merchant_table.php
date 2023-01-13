@@ -16,7 +16,10 @@ return new class extends Migration
         Schema::create('merchants', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('logo');
+            $table->string('email');
+            $table->string('description')->nullable();
+            $table->string('logo')->nullable();
+            $table->string('type');
             $table->timestamps();
         });
     }

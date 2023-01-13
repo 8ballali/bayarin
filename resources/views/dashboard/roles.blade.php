@@ -147,7 +147,7 @@
             </li>
 
             <!-- Layouts -->
-            <li class="menu-item">
+            <li class="menu-item active">
                 <a href="{{ url('/roles')}}" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-chip"></i>
                     <div data-i18n="Authentications">Roles</div>
@@ -165,8 +165,8 @@
                 <div data-i18n="Authentications">Transaction</div>
               </a>
             </li>
-            <li class="menu-item active">
-              <a href="{{ url('/merchant')}}" class="menu-link">
+            <li class="menu-item">
+              <a href="{{url('/merchant')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bxs-bank"></i>
                 <div data-i18n="Authentications">Merchant</div>
               </a>
@@ -252,7 +252,7 @@
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="{{ url('/logout')}}">
+                      <a class="dropdown-item" href="{{url('/logout')}}">
                         <i class="bx bx-power-off me-2"></i>
                         <span class="align-middle">Log Out</span>
                       </a>
@@ -271,55 +271,26 @@
             <!-- Content -->
 
             <div class="container-xxl flex-grow-1 container-p-y">
-                <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span> List Merchant</h4>
-                <form action="{{url('/merchant/add')}}" method="GET">
-                  <button type="submit" class="btn btn-success" data-dismiss="modal">Add Merchant</button>
-                </form>
+                <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span> List Roles</h4>
 
               <hr class="my-5" />
 
               <!-- Hoverable Table rows -->
-              <div class="card">
-                <h5 class="card-header">List Merchant</h5>
+              <div class="card mb-5">
+                <h5 class="card-header">List Roles</h5>
                 <div class="table-responsive text-nowrap">
                   <table class="table table-bordered">
                     <thead>
                       <tr>
                         <th>Name</th>
-                        <th>Email</th>
-                        <th>Description</th>
-                        <th>Type</th>
-                        <th>logo</th>
-                        <th>action</th>
+                        <th>Status</th>
                       </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
-                    @foreach ($merchant as $merch)
+                    @foreach ($roles as $r)
                       <tr>
-                        <td>{{ $merch->name }}</td>
-                        <td>{{ $merch->email }}</td>
-                        <td>{{ $merch->description }}</td>
-                        <td>{{ $merch->type }}</td>
-                        <td><img src="{{ url('storage').'/'.$merch->logo }}" class="w-px-50 h-auto rounded-circle" />
-                        <td>
-                                <div class="dropdown">
-                                  <button
-                                    type="button"
-                                    class="btn p-0 dropdown-toggle hide-arrow"
-                                    data-bs-toggle="dropdown"
-                                  >
-                                    <i class="bx bx-dots-vertical-rounded"></i>
-                                  </button>
-                                  <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="/merchant/edit/{{$merch->id}}"
-                                      ><i class="bx bx-edit-alt me-1"></i> Edit</a
-                                    >
-                                    <a class="dropdown-item" href="/merchant/delete/{{$merch->id}}"
-                                      ><i class="bx bx-trash me-1"></i> Delete</a
-                                    >
-                                  </div>
-                                </div>
-                        </td>
+                        <td>{{ $r->name }}</td>
+                        <td>Active</td>
                     </tr>
                     @endforeach
                     </tbody>
